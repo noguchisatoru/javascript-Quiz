@@ -3,13 +3,13 @@ const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const start = document.getElementById("start");
 
-let correctAnswers = [];
-let answers = [];
-let myAnswers = [];
+const correctAnswers = [];
+const answers = [];
+const myAnswers = [];
 let correctNumbers = 0;
 
 async function quiz(data) {
-    //リセット
+    //問題を１０回表示させる
     for(let i = 0; i < data.results.length; i++){
         //HTMLの表示切り替え
         reset();
@@ -67,7 +67,7 @@ let clickAnswer = () =>{
     });
 };
 
-//待機処理（実際は時間待っているだけ）
+//待機画面の表示
 let processing =() =>{
     genre.removeChild(genre.firstChild);
     question.removeChild(question.firstChild);
@@ -95,7 +95,7 @@ let arrShuffle = (arr) =>{
     }
   }
 
-//問題を切り替える
+//問題、選択肢を削除する
 let reset = () =>{
     while(genre.firstChild){
         genre.removeChild(genre.firstChild);
@@ -144,6 +144,7 @@ fetch('https://opentdb.com/api.php?amount=10')
      return response.json();
  })
  .then(data => {
+    //  クリックしたら開始される
     start.addEventListener("click", function() {
         processing();
         setTimeout(
