@@ -1,5 +1,5 @@
 //ボタンがクリックされるまで待機しmyAnswersに保存
-let clickAnswer = () =>{
+const clickAnswer = () =>{
     return new Promise(resolve =>{
         const btns = document.getElementsByClassName("btn");
         for(let test = 0; test < btns.length; test++){
@@ -12,7 +12,7 @@ let clickAnswer = () =>{
 };
 
 //データの取得
-let getData = (test) =>{
+const getData = (test) =>{
     test.results.forEach(el => {
         quiz.setQuiz(el.category, el.correct_answer, el.difficulty, el.incorrect_answers, el.question, el.question);
         const test = quiz.getQuiz();
@@ -20,7 +20,7 @@ let getData = (test) =>{
 };
 
 //待機画面の表示
-let processing = () =>{
+const processing = () =>{
     genre.removeChild(genre.firstChild);
     question.removeChild(question.firstChild);
     answer.removeChild(answer.firstChild);
@@ -35,7 +35,7 @@ let processing = () =>{
 }
 
 //配列（正解と不正解）のシャッフル
-let arrShuffle = (arr) =>{
+const arrShuffle = (arr) =>{
     let len = arr.length;
     while(len > 0){
       let rnd = Math.floor(Math.random() * len);
@@ -47,7 +47,7 @@ let arrShuffle = (arr) =>{
   }
 
 //結果表示
-let result = () =>{
+const result = () =>{
     //答え合わせ
     for(i = 0; i < myAnswers.length; i++){
         if(myAnswers[i] === correctAnswers[i]){
@@ -78,7 +78,7 @@ let result = () =>{
 }
 
 //問題、選択肢を削除する
-let reset = () =>{
+const reset = () =>{
     while(genre.firstChild){
         genre.removeChild(genre.firstChild);
     }
