@@ -1,24 +1,3 @@
-//ボタンがクリックされるまで待機しmyAnswersに保存
-const clickAnswer = () =>{
-    return new Promise(resolve =>{
-        const btns = document.getElementsByClassName("btn");
-        for(let test = 0; test < btns.length; test++){
-            btns[test].addEventListener("click", function(){
-                myAnswers.push(this.textContent);
-                resolve();
-            });
-        }
-    });
-};
-
-//データの取得
-const getData = (test) =>{
-    test.results.forEach(el => {
-        quiz.setQuiz(el.category, el.correct_answer, el.difficulty, el.incorrect_answers, el.question, el.question);
-        const test = quiz.getQuiz();
-    });
-};
-
 //待機画面の表示
 const processing = () =>{
     genre.removeChild(genre.firstChild);
@@ -45,6 +24,19 @@ const arrShuffle = (arr) =>{
       len-=1;
     }
   }
+
+//問題、選択肢を削除する
+const reset = () =>{
+    while(genre.firstChild){
+        genre.removeChild(genre.firstChild);
+    }
+    question.removeChild(question.firstChild);
+    while(answer.firstChild){
+        answer.removeChild(answer.firstChild);
+    }
+　　//配列リセット
+    answers.length = 0;
+}
 
 //結果表示
 const result = () =>{
@@ -75,17 +67,4 @@ const result = () =>{
         //更新処理
         location.reload();
      });
-}
-
-//問題、選択肢を削除する
-const reset = () =>{
-    while(genre.firstChild){
-        genre.removeChild(genre.firstChild);
-    }
-    question.removeChild(question.firstChild);
-    while(answer.firstChild){
-        answer.removeChild(answer.firstChild);
-    }
-　　//配列リセット
-    answers.length = 0;
 }
