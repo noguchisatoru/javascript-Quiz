@@ -1,11 +1,11 @@
 class Quiz{
-    constructor(category, correct_answer, difficulty, incorrect_answers, question, type){
-        this.category = category;
-        this.correct_answer = correct_answer;
-        this.difficulty = difficulty;
-        this.incorrect_answers = incorrect_answers;
-        this.question = question;
-        this.type = type;
+    constructor(quizData){
+        this.category = quizData.category;
+        this.correct_answer = quizData.correct_answer;
+        this.difficulty = quizData.difficulty;
+        this.incorrect_answers = quizData.incorrect_answers;
+        this.question = quizData.question;
+        this.type = quizData.type;
     }
 }
 
@@ -25,8 +25,7 @@ const showQuiz = (quizData) =>{
         //HTMLの表示切り替え
         reset();
 
-        const quiz = new Quiz(quizData[index].category, quizData[index].correct_answer, quizData[index].difficulty,
-                                     quizData[index].incorrect_answers, quizData[index].question, quizData[index].type);
+        const quiz = new Quiz(quizData[index]);
 
         correctAnswers.push(quiz.correct_answer);
 
