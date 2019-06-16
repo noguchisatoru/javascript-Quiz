@@ -54,14 +54,14 @@ const showQuiz = (quizData) =>{
         genre.appendChild(pLevel);
         question.appendChild(pQuestion);
         //回答一覧表示
-        answers.array.forEach(element => {
+        for(let j = 0; j < answers.length; j++){
             const answerBtn = document.createElement('button');
             answerBtn.classList.add('btn');
-            answerBtn.textContent = element;
+            answerBtn.textContent = answers[j];
             answer.appendChild(answerBtn);
             const br = document.createElement('br');
             answer.appendChild(br);
-        });
+        }
 
         const btns = document.getElementsByClassName("btn");
         for(let i = 0; i < btns.length; i++){
