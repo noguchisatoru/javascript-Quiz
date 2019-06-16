@@ -25,7 +25,7 @@ const showQuiz = (quizData) =>{
         //HTMLの表示切り替え
         reset();
 
-        let quiz = new Quiz(quizData[index].category, quizData[index].correct_answer, quizData[index].difficulty,
+        const quiz = new Quiz(quizData[index].category, quizData[index].correct_answer, quizData[index].difficulty,
                                      quizData[index].incorrect_answers, quizData[index].question, quizData[index].type);
 
         correctAnswers.push(quiz.correct_answer);
