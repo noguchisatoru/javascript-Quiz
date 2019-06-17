@@ -13,18 +13,6 @@ const processing = () =>{
     question.appendChild(pQuestion);
 }
 
-//配列（正解と不正解）のシャッフル
-const arrShuffle = (arr) =>{
-    let len = arr.length;
-    while(len > 0){
-      let rnd = Math.floor(Math.random() * len);
-      let tmp = arr[len-1];
-      arr[len-1] = arr[rnd];
-      arr[rnd] = tmp;
-      len-=1;
-    }
-  }
-
 //問題、選択肢を削除する
 const reset = () =>{
     while(genre.firstChild){
@@ -34,19 +22,10 @@ const reset = () =>{
     while(answer.firstChild){
         answer.removeChild(answer.firstChild);
     }
-　　//配列リセット
-    answers.length = 0;
 }
 
 //結果表示
 const result = () =>{
-    //答え合わせ
-    for(i = 0; i < myAnswers.length; i++){
-        if(myAnswers[i] === correctAnswers[i]){
-            correctNumbers++
-        }
-    }
-
     reset();
 
     const pGenre = document.createElement('p');

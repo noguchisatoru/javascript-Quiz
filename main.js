@@ -7,6 +7,31 @@ class Quiz{
         this.question = quizData.question;
         this.type = quizData.type;
     }
+
+    answers(){
+        const answers = [];
+        //正解と不正解をあわせる
+        this.incorrect_answers.forEach(el => {
+            answers.push(el);
+        });
+        answers.push(this.correct_answer);
+        // 正解と不正解を混ぜる
+        this.arrShuffle(answers);
+        
+        return answers;
+    }
+
+    //配列（正解と不正解）のシャッフル
+    arrShuffle = (arr) =>{
+        let len = arr.length;
+        while(len > 0){
+        let rnd = Math.floor(Math.random() * len);
+        let tmp = arr[len-1];
+        arr[len-1] = arr[rnd];
+        arr[rnd] = tmp;
+        len-=1;
+        }
+    }
 }
 
 const genre = document.getElementById("genre");
@@ -14,9 +39,7 @@ const question = document.getElementById("question");
 const answer = document.getElementById("answer");
 const start = document.getElementById("start");
 
-const correctAnswers = [];
-const answers = [];
-const myAnswers = [];
+//正解数
 let correctNumbers = 0;
 let index = 0;
 
@@ -27,15 +50,7 @@ const showQuiz = (quizData) =>{
 
         const quiz = new Quiz(quizData[index]);
 
-        correctAnswers.push(quiz.correct_answer);
-
-        //正解と不正解をあわせる
-        quiz.incorrect_answers.forEach(el => {
-            answers.push(el);
-        });
-        answers.push(quiz.correct_answer);
-        // 正解と不正解を混ぜる
-        arrShuffle(answers);
+        const answers = quiz.answers();
 
         // 問題数・ジャンル・難易度
         const pNumber = document.createElement('p');
@@ -65,7 +80,10 @@ const showQuiz = (quizData) =>{
         const btns = document.getElementsByClassName("btn");
         for(let i = 0; i < btns.length; i++){
             btns[i].addEventListener("click", function(){
-                myAnswers.push(this.textContent);
+                 //答え合わせ
+                if(this.textContent === quiz.correct_answer){
+                    correctNumbers++;
+                }
                 index++;
                 showQuiz(quizData);
             });
