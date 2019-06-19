@@ -8,7 +8,7 @@ class Quiz{
         this.type = quizData.type;
     }
 
-    answers(){
+    getAnswers(){
         const answers = [];
         //正解と不正解をあわせる
         this.incorrect_answers.forEach(el => {
@@ -25,11 +25,11 @@ class Quiz{
     arrShuffle = (arr) =>{
         let len = arr.length;
         while(len > 0){
-        let rnd = Math.floor(Math.random() * len);
-        let tmp = arr[len-1];
-        arr[len-1] = arr[rnd];
-        arr[rnd] = tmp;
-        len-=1;
+            let rnd = Math.floor(Math.random() * len);
+            let tmp = arr[len-1];
+            arr[len-1] = arr[rnd];
+            arr[rnd] = tmp;
+            len-=1;
         }
     }
 }
@@ -50,7 +50,7 @@ const showQuiz = (quizData) =>{
 
         const quiz = new Quiz(quizData[index]);
 
-        const answers = quiz.answers();
+        const answers = quiz.getAnswers();
 
         // 問題数・ジャンル・難易度
         const pNumber = document.createElement('p');
